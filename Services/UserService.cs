@@ -26,6 +26,11 @@ namespace MyApi.Services
             return await _userRepository.GetUserByIdAsync(id);
         }
 
+        public async Task<User?> GetUserByEmailAsync(string email)
+        {
+            return await _userRepository.GetUserByEmailAsync(email);
+        }
+
         public async Task AddUserAsync(User user)
         {
             await _userRepository.AddUserAsync(user);

@@ -25,6 +25,11 @@ namespace MyApi.Repositories
             return await _context.Users.FindAsync(id);
         }
 
+        public async Task<User?> GetUserByEmailAsync(string email)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+        }
+
         public async Task AddUserAsync(User user)
         {
             user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
