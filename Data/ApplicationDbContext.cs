@@ -27,7 +27,7 @@ namespace MyApi.Data
                 .HasOne(r => r.User)
                 .WithMany(u => u.Registrations)
                 .HasForeignKey(r => r.UserId)
-                .OnDelete(DeleteBehavior.Cascade); // Ou une autre option de suppression
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Registration>()
                 .HasOne(r => r.Activity)
