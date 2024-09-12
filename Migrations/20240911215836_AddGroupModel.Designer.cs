@@ -10,8 +10,8 @@ using MyApi.Data;
 namespace MyApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240909141034_UpdateUserPasswordModel")]
-    partial class UpdateUserPasswordModel
+    [Migration("20240911215836_AddGroupModel")]
+    partial class AddGroupModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,6 +33,21 @@ namespace MyApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Activities");
+                });
+
+            modelBuilder.Entity("MyApi.Models.Group", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Groups");
                 });
 
             modelBuilder.Entity("MyApi.Models.Registration", b =>
@@ -60,6 +75,9 @@ namespace MyApi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -73,6 +91,8 @@ namespace MyApi.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("GroupId");
 
                     b.ToTable("Users");
                 });
@@ -96,9 +116,25 @@ namespace MyApi.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("MyApi.Models.User", b =>
+                {
+                    b.HasOne("MyApi.Models.Group", "Group")
+                        .WithMany("Users")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Group");
+                });
+
             modelBuilder.Entity("MyApi.Models.Activity", b =>
                 {
                     b.Navigation("Registrations");
+                });
+
+            modelBuilder.Entity("MyApi.Models.Group", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("MyApi.Models.User", b =>

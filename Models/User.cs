@@ -8,6 +8,9 @@ namespace MyApi.Models
         public required string Password { get; set; }
         public required string Role { get; set; }
 
+        public required int GroupId { get; set; }
+        public required Group Group { get; set; }
+        
         // Navigation property
         public ICollection<Registration> Registrations { get; set; } = new List<Registration>();
     }

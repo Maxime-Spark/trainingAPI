@@ -27,6 +27,13 @@ namespace MyApi.Mappings
 
             CreateMap<RegistrationDto, Registration>();
             CreateMap<RegistrationCreationDto, Registration>();
+
+            // Mappages pour Group et DTOs
+            CreateMap<Group, GroupDto>();
+
+            CreateMap<GroupDto, Group>();
+            CreateMap<GroupCreationDto, Group>();
+            CreateMap<GroupEditionDto, Group>();
         }
     }
 }

@@ -24,10 +24,12 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IActivityRepository, ActivityRepository>(); 
 builder.Services.AddScoped<IRegistrationRepository, RegistrationRepository>(); 
+builder.Services.AddScoped<IGroupRepository, GroupRepository>(); 
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
 builder.Services.AddScoped<IRegistrationService, RegistrationService>();
+builder.Services.AddScoped<IGroupService, GroupService>();
 
 // Configuration de Swagger
 builder.Services.AddSwaggerGen(c =>
