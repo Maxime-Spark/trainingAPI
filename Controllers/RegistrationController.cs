@@ -5,10 +5,6 @@ using MyApi.DTOs;
 using MyApi.Models;
 using MyApi.Services;
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 using AutoMapper;
 
 namespace MyApi.Controllers
@@ -27,6 +23,7 @@ namespace MyApi.Controllers
         }
 
         [HttpGet]
+        // [Authorize]
         public async Task<ActionResult<IEnumerable<RegistrationDto>>> GetRegistrations()
         {
             var registrations = await _registrationService.GetAllRegistrationsAsync();
@@ -35,6 +32,7 @@ namespace MyApi.Controllers
         }
 
         [HttpGet("{userId}/{activityId}")]
+        // [Authorize]
         public async Task<ActionResult<RegistrationDto>> GetRegistration(int userId, int activityId)
         {
             var registration = await _registrationService.GetRegistrationByIdsAsync(userId, activityId);
@@ -45,6 +43,7 @@ namespace MyApi.Controllers
         }
 
         [HttpPost]
+        // [Authorize]
         public async Task<ActionResult<RegistrationDto>> CreateRegistration(RegistrationCreationDto registrationDto)
         {
             var registration = _mapper.Map<Registration>(registrationDto);
@@ -55,6 +54,7 @@ namespace MyApi.Controllers
         }
 
         [HttpDelete("{userId}/{activityId}")]
+        // [Authorize]
         public async Task<IActionResult> DeleteRegistration(int userId, int activityId)
         {
             var deleted = await _registrationService.DeleteRegistrationAsync(userId, activityId);

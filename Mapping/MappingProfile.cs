@@ -30,10 +30,11 @@ namespace MyApi.Mappings
 
             // Mappages pour Group et DTOs
             CreateMap<Group, GroupDto>();
+            CreateMap<Group, GroupRawDto>();
 
             CreateMap<GroupDto, Group>();
             CreateMap<GroupCreationDto, Group>();
-            CreateMap<GroupEditionDto, Group>();
+            CreateMap<GroupEditionDto, Group>();   
         }
     }
 }

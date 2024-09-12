@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyApi.Data;
 
@@ -10,9 +11,10 @@ using MyApi.Data;
 namespace MyApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240912114714_Seeding2")]
+    partial class Seeding2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,7 +116,7 @@ namespace MyApi.Migrations
                             Email = "maxforain@gmail.com",
                             GroupId = 1,
                             Name = "Max",
-                            Password = "$2a$11$M4hRB64qXNR3Yy8SQ3O74O60kfVRCPeJgJcoCGUDkq7h0VHsGY5nS",
+                            Password = "hashedPassword",
                             Role = "admin"
                         },
                         new
@@ -123,7 +125,7 @@ namespace MyApi.Migrations
                             Email = "user1@example.com",
                             GroupId = 2,
                             Name = "User1",
-                            Password = "$2a$11$M4hRB64qXNR3Yy8SQ3O74O60kfVRCPeJgJcoCGUDkq7h0VHsGY5nS",
+                            Password = "hashedPassword",
                             Role = "student"
                         });
                 });

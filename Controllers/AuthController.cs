@@ -5,11 +5,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-using BCrypt.Net;
-
 using MyApi.Services;
 using MyApi.DTOs;
-using MyApi.Models;
 using MyApi.Helpers;
 
 namespace MyApi.Controllers

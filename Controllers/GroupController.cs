@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 using MyApi.Models;
 using MyApi.Services;
 using MyApi.DTOs;
@@ -28,6 +25,7 @@ namespace MyApi.Controllers
 
         // GET: api/Group
         [HttpGet]
+        // [Authorize]
         public async Task<ActionResult<IEnumerable<GroupDto>>> GetGroups()
         {
             var groups = await _groupService.GetAllGroupsAsync();
@@ -40,6 +38,7 @@ namespace MyApi.Controllers
 
         // GET: api/Group/5
         [HttpGet("{id}")]
+        // [Authorize]
         public async Task<ActionResult<GroupDto>> GetGroup(int id)
         {
             var group = await _groupService.GetGroupByIdAsync(id);
@@ -57,6 +56,7 @@ namespace MyApi.Controllers
 
         // POST: api/Group
         [HttpPost]
+        // [Authorize]
         public async Task<ActionResult<GroupDto>> CreateGroup(GroupCreationDto groupDto)
         {
             // Mapper le DTO vers l'entité Group
@@ -72,6 +72,7 @@ namespace MyApi.Controllers
 
         // PUT: api/Group/5
         [HttpPut("{id}")]
+        // [Authorize]
         public async Task<IActionResult> UpdateGroup(int id, GroupEditionDto groupDto)
         {
             if (id != groupDto.Id)
@@ -94,6 +95,7 @@ namespace MyApi.Controllers
 
         // DELETE: api/Group/5
         [HttpDelete("{id}")]
+        // [Authorize]
         public async Task<IActionResult> DeleteGroup(int id)
         {
             var deleted = await _groupService.DeleteGroupAsync(id);

@@ -40,6 +40,21 @@ namespace MyApi.Data
                 .WithMany(g => g.Users)
                 .HasForeignKey(u => u.GroupId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            // Seeding de la table Groups
+            modelBuilder.Entity<Group>().HasData(
+                new Group { Id = 1, Name = "admin" }, 
+                new Group { Id = 2, Name = "student" }
+            );
+
+            // Seeding de la table Users
+            // Hash les mots de passe avant de les inclure dans le seed
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword("12345");
+
+            modelBuilder.Entity<User>().HasData(
+                new User { Id = 1, Name = "Max", Email = "maxforain@gmail.com", Password = hashedPassword, Role = "admin", GroupId = 1 },
+                new User { Id = 2, Name = "User1", Email = "user1@example.com", Password = hashedPassword, Role = "student", GroupId = 2 }
+            );
         }
     }
 }

@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 using MyApi.Models;
 using MyApi.Services;
 using MyApi.DTOs;
@@ -28,6 +25,7 @@ namespace MyApi.Controllers
 
         // GET: api/Activity
         [HttpGet]
+        // [Authorize]
         public async Task<ActionResult<IEnumerable<ActivityDto>>> GetActivities()
         {
             var activities = await _activityService.GetAllActivitiesAsync();
@@ -40,6 +38,7 @@ namespace MyApi.Controllers
 
         // GET: api/Activity/5
         [HttpGet("{id}")]
+        // [Authorize]
         public async Task<ActionResult<ActivityDto>> GetActivity(int id)
         {
             var activity = await _activityService.GetActivityByIdAsync(id);
@@ -57,6 +56,7 @@ namespace MyApi.Controllers
 
         // POST: api/Activity
         [HttpPost]
+        // [Authorize]
         public async Task<ActionResult<ActivityDto>> CreateActivity(ActivityCreationDto activityDto)
         {
             // Mapper le DTO vers l'entité Activity
@@ -72,6 +72,7 @@ namespace MyApi.Controllers
 
         // PUT: api/Activity/5
         [HttpPut("{id}")]
+        // [Authorize]
         public async Task<IActionResult> UpdateActivity(int id, ActivityEditionDto activityDto)
         {
             if (id != activityDto.Id)
@@ -94,6 +95,7 @@ namespace MyApi.Controllers
 
         // DELETE: api/Activity/5
         [HttpDelete("{id}")]
+        // [Authorize]
         public async Task<IActionResult> DeleteActivity(int id)
         {
             var deleted = await _activityService.DeleteActivityAsync(id);
