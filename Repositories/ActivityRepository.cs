@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MyApi.Data;
 using MyApi.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace MyApi.Repositories
 {

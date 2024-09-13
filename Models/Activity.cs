@@ -5,7 +5,8 @@ namespace MyApi.Models
         public int Id { get; set; }
         public required string Name { get; set; }
 
-         // Navigation property
-        public ICollection<Registration> Registrations { get; set; } = new List<Registration>();
+        // Navigation property
+        public ICollection<Registration>? Registrations { get; set; } = [];
+        public ICollection<ActivityAccess>? ActivityAccesses { get; set; } = [];
     }
 }

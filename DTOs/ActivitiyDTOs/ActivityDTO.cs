@@ -6,6 +6,7 @@ namespace MyApi.DTOs
     {
         public int Id { get; set; }
         public required string Name { get; set; }
-        public ICollection<RegistrationDto> Registrations { get; set; } = new List<RegistrationDto>();
+        public ICollection<RegistrationWithUserDto>? Registrations { get; set; } = [];
+        public ICollection<ActivityAccessDto>? ActivityAccesses { get; set; } = [];
     }
 }

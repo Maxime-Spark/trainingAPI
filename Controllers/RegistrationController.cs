@@ -24,32 +24,32 @@ namespace MyApi.Controllers
 
         [HttpGet]
         // [Authorize]
-        public async Task<ActionResult<IEnumerable<RegistrationDto>>> GetRegistrations()
+        public async Task<ActionResult<IEnumerable<RegistrationRawDto>>> GetRegistrations()
         {
             var registrations = await _registrationService.GetAllRegistrationsAsync();
-            var registrationDtos = _mapper.Map<IEnumerable<RegistrationDto>>(registrations);
-            return Ok(registrationDtos);
+            var registrationRawDtos = _mapper.Map<IEnumerable<RegistrationRawDto>>(registrations);
+            return Ok(registrationRawDtos);
         }
 
         [HttpGet("{userId}/{activityId}")]
         // [Authorize]
-        public async Task<ActionResult<RegistrationDto>> GetRegistration(int userId, int activityId)
+        public async Task<ActionResult<RegistrationRawDto>> GetRegistration(int userId, int activityId)
         {
             var registration = await _registrationService.GetRegistrationByIdsAsync(userId, activityId);
             if (registration == null) return NotFound();
 
-            var registrationDto = _mapper.Map<RegistrationDto>(registration);
-            return Ok(registrationDto);
+            var registrationRawDto = _mapper.Map<RegistrationRawDto>(registration);
+            return Ok(registrationRawDto);
         }
 
         [HttpPost]
         // [Authorize]
-        public async Task<ActionResult<RegistrationDto>> CreateRegistration(RegistrationCreationDto registrationDto)
+        public async Task<ActionResult<RegistrationRawDto>> CreateRegistration(RegistrationCreationDto registrationRawDto)
         {
-            var registration = _mapper.Map<Registration>(registrationDto);
+            var registration = _mapper.Map<Registration>(registrationRawDto);
             await _registrationService.AddRegistrationAsync(registration);
 
-            var createdRegistrationDto = _mapper.Map<RegistrationDto>(registration);
+            var createdRegistrationDto = _mapper.Map<RegistrationRawDto>(registration);
             return CreatedAtAction(nameof(GetRegistration), new { userId = registration.UserId, activityId = registration.ActivityId }, createdRegistrationDto);
         }
 

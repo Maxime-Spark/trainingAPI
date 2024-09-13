@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using MyApi.Models;
 
 namespace MyApi.Repositories

@@ -1,11 +1,11 @@
 namespace MyApi.Models
 {
-    public class Registration
+    public class ActivityAccess
     {
         public int Id { get; set; }
         
-        public int UserId { get; set; }
-        public required User User { get; set; }
+        public int GroupId { get; set; }
+        public required Group Group { get; set; }
         
         public int ActivityId { get; set; }
         public required Activity Activity { get; set; }

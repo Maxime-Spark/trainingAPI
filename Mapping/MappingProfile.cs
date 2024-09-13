@@ -23,9 +23,10 @@ namespace MyApi.Mappings
             CreateMap<ActivityEditionDto, Activity>();
 
             // Mappages pour Registration et DTOs
-            CreateMap<Registration, RegistrationDto>();
+            CreateMap<Registration, RegistrationWithUserDto>();
+            CreateMap<Registration, RegistrationRawDto>();
 
-            CreateMap<RegistrationDto, Registration>();
+            CreateMap<RegistrationRawDto, Registration>();
             CreateMap<RegistrationCreationDto, Registration>();
 
             // Mappages pour Group et DTOs

@@ -6,7 +6,6 @@ namespace MyApi.DTOs
     {
         public required int Id { get; set; }
         public required string Name { get; set; }
-
-        public ICollection<UserDto> Users { get; set; } = new List<UserDto>();
+        public ICollection<UserDto> Users { get; set; } = [];
     }
 }

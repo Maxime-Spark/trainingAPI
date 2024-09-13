@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MyApi.Data;
 using MyApi.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace MyApi.Repositories
 {
@@ -32,23 +30,23 @@ namespace MyApi.Repositories
         }
 
         // Ajouter un nouveau groups
-        public async Task AddGroupAsync(Group Group)
+        public async Task AddGroupAsync(Group group)
         {
-            await _context.Groups.AddAsync(Group);
+            await _context.Groups.AddAsync(group);
             await _context.SaveChangesAsync();
         }
 
         // Mettre à jour un groups existant
-        public async Task<bool> UpdateGroupAsync(Group Group)
+        public async Task<bool> UpdateGroupAsync(Group group)
         {
-            var existingGroup = await _context.Groups.FindAsync(Group.Id);
+            var existingGroup = await _context.Groups.FindAsync(group.Id);
 
             if (existingGroup == null)
             {
                 return false; // L'activité n'existe pas
             }
 
-            existingGroup.Name = Group.Name;
+            existingGroup.Name = group.Name;
 
             _context.Groups.Update(existingGroup);
             await _context.SaveChangesAsync();
@@ -58,13 +56,13 @@ namespace MyApi.Repositories
         // Supprimer un groups
         public async Task<bool> DeleteGroupAsync(int id)
         {
-            var Group = await _context.Groups.FindAsync(id);
-            if (Group == null)
+            var group = await _context.Groups.FindAsync(id);
+            if (group == null)
             {
                 return false; // Le groups n'existe pas
             }
 
-            _context.Groups.Remove(Group);
+            _context.Groups.Remove(group);
             await _context.SaveChangesAsync();
             return true;
         }

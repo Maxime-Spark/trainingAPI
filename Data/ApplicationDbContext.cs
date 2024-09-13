@@ -14,6 +14,7 @@ namespace MyApi.Data
         public required DbSet<Activity> Activities { get; set; }
         public required DbSet<Registration> Registrations { get; set; }
         public required DbSet<Group> Groups { get; set; }
+        public required DbSet<ActivityAccess> ActivityAccesses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,12 +35,17 @@ namespace MyApi.Data
                 .WithMany(a => a.Registrations)
                 .HasForeignKey(r => r.ActivityId);
 
+            // Configuration de la relation Activity <-> ActivityAccess
+            
+
             // Configuration de la relation User <-> Group
             modelBuilder.Entity<User>()
                 .HasOne(u => u.Group)
                 .WithMany(g => g.Users)
                 .HasForeignKey(u => u.GroupId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            
 
             // Seeding de la table Groups
             modelBuilder.Entity<Group>().HasData(
