@@ -3,6 +3,7 @@ namespace MyApi.DTOs
     public class RegistrationWithUserDto
     {
         public int Id { get; set; }
+        public bool? IsPresent { get; set; }
         public required int UserId { get; set; }
         public required int ActivityId { get; set; }
 
